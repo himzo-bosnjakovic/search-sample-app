@@ -401,9 +401,7 @@ class MainActivity : AppCompatActivity() {
         searchView?.requestFocus()
     }
 
-    fun setActionBarTitle(title: String?) {
-        supportActionBar!!.title = title
-    }
+    fun setActionBarTitle(title: String?) = supportActionBar!!.title = title
 
     fun resetCache() {
         ObjectCache.keyboardOpen = false
