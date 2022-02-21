@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#e4154b</color>
+    <color name="colorPrimaryDark">#e4154b</color>
+    <color name="colorAccent">#e4154b</color>
+    <color name="tugRed">#e4154b</color>
+    <color name="tugBlue">#245B77</color>
+    <color name="textGrey">#8f8f8f</color>
+    <color name="textBlack">#FF2B2B2B</color>
+    <color name="textBlue">#245B77</color>
+</resources>

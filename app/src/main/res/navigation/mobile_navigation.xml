@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <!--    TODO: place label in view and leave empty here-->
+
+    <fragment
+        android:id="@+id/nav_events"
+        android:name="at.tug.search.controllers.events.EventsFragment"
+        android:label="@string/menu_events"
+        tools:layout="@layout/fragment_events" >
+        <action
+            android:id="@+id/action_nav_events_to_detail_web_view"
+            app:destination="@id/detail_web_view"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="at.tug.search.controllers.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_person"
+            app:destination="@id/nav_person"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_lv"
+            app:destination="@id/nav_lv"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_news"
+            app:destination="@id/nav_news"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_room"
+            app:destination="@id/nav_room"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_organisation"
+            app:destination="@id/nav_organisation"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_events"
+            app:destination="@id/nav_events"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_lv"
+        android:name="at.tug.search.controllers.course.CourseFragment"
+        android:label="@string/menu_lv"
+        tools:layout="@layout/fragment_course" >
+        <action
+            android:id="@+id/action_nav_lv_to_detail_web_view"
+            app:destination="@id/detail_web_view"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_news"
+        android:name="at.tug.search.controllers.news.NewsFragment"
+        android:label="@string/menu_news"
+        tools:layout="@layout/fragment_news" >
+        <action
+            android:id="@+id/action_nav_news_to_detail_web_view"
+            app:destination="@id/detail_web_view"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_organisation"
+        android:name="at.tug.search.controllers.organisation.OrganisationFragment"
+        android:label="@string/menu_organisation"
+        tools:layout="@layout/fragment_organisation" >
+        <action
+            android:id="@+id/action_nav_organisation_to_organisation_detail"
+            app:destination="@id/organisation_detail"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_person"
+        android:name="at.tug.search.controllers.person.PersonFragment"
+        tools:layout="@layout/fragment_person"
+        android:label="@string/menu_person">
+        <action
+            android:id="@+id/action_nav_person_to_person_detail"
+            app:destination="@+id/person_detail"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" >
+            <argument android:name="person" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_room"
+        android:name="at.tug.search.controllers.room.RoomFragment"
+        android:label="@string/menu_room"
+        tools:layout="@layout/fragment_room" >
+        <action
+            android:id="@+id/action_nav_room_to_room_detail"
+            app:destination="@id/room_detail"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/person_detail"
+        android:name="at.tug.search.controllers.personDetail.PersonDetailFragment"
+        tools:layout="@layout/fragment_person_detail" >
+        <argument
+            android:name="person"
+            app:argType="at.tug.search.models.Person" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/room_detail"
+        android:name="at.tug.search.controllers.roomDetail.RoomDetailFragment"
+        tools:layout="@layout/fragment_room_detail" />
+
+    <fragment
+        android:id="@+id/organisation_detail"
+        android:name="at.tug.search.controllers.organisationDetail.OrganisationDetailFragment"
+        android:label="@string/menu_organisation_detail"
+        tools:layout="@layout/fragment_organisation_detail" />
+
+    <fragment
+        android:id="@+id/detail_web_view"
+        android:name="at.tug.search.controllers.DetailWebView.DetaiWebViewlFragment"
+        tools:layout="@layout/fragment_web_view" >
+        <argument
+            android:name="url"
+            app:argType="string" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+    </fragment>
+</navigation>

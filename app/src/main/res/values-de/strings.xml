@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    //Menu
+    <string name="app_name">TU Graz Suche</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_organisation">Organisation</string>
+    <string name="menu_person">Person</string>
+    <string name="menu_room">Raum</string>
+    <string name="menu_lv">LV</string>
+    <string name="menu_news">News</string>
+    <string name="menu_events">Events</string>
+    <string name="menu_organisation_detail">Organisationsdaten</string>
+    <string name="menu_about">About</string>
+
+    //Labels
+    <string name="openMaps">In Maps öffnen</string>
+    <string name="openBusinessCard">TUGRAZonline Visitenkarte öffnen</string>
+    <string name="tel">Telefon</string>
+    <string name="mail">Email</string>
+    <string name="website">Website</string>
+    <string name="name">Name</string>
+    <string name="purpose">Nutzung</string>
+    <string name="place">Ort</string>
+    <string name="notFound">Nicht gefunden</string>
+    <string name="min2">Mindestens 2 Zeichen eingeben</string>
+    <string name="min3">Mindestens 3 Zeichen eingeben</string>
+    <string name="noInternet">Keine Internetverbindung</string>
+    <string name="noResults">Keine Einträge gefunden</string>
+    <string name="iconSearch">search</string>
+    <string name="iconCopyright">Icon made by Smashicons from www.flaticon.com</string>
+    <string name="lizenz">Picasso Downloader Copyright 2013 Square, Inc.Licensed under the Apache License, Version 2.0 (the "License");
+        You may obtain a copy of the License at   http://www.apache.org/licenses/LICENSE-2.0.
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+        INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+        IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
+        OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+        OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+        OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."</string>
+    <string name="PersonSearchHint">Suche Person</string>
+    <string name="RoomSearchHint">Suche Raum</string>
+    <string name="CourseSearchHint">Suche Kurs</string>
+    <string name="OrganisationSearchHint">Suche Organisation</string>
+
+
+</resources>

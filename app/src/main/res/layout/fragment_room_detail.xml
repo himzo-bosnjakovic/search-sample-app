@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <fragment
+            android:id="@+id/roomDetailMapView"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            class="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:context=".activity.MainActivity" />
+
+        <TextView
+            android:id="@+id/roomDetailMapOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#90FFFFFF"
+            android:gravity="center"
+            android:text="@string/notFound"
+            android:textAlignment="center"
+            android:textColor="@color/textBlack"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/divider5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/roomDetailMapView" />
+
+        <TextView
+            android:id="@+id/roomDetailOpenMap"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/openMaps"
+            android:textAlignment="center"
+            android:textColor="@color/textBlue"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/roomDetailMapView" />
+
+        <TextView
+            android:id="@+id/roomDetailMapNotFound"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#99FFFFFF"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:text="Nicht gefunden"
+            android:textAlignment="center"
+            android:textColor="@color/textGrey"
+            android:textSize="17sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/roomDetailOpenMap"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/roomDetailMapView" />
+
+        <View
+            android:id="@+id/divider5"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/roomDetailOpenMap" />
+
+        <TextView
+            android:id="@+id/roomDetailTugonline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/openBusinessCard"
+            android:textAlignment="center"
+            android:textColor="@color/textBlue"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider5" />
+
+        <View
+            android:id="@+id/divider6"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/roomDetailTugonline" />
+
+        <LinearLayout
+            android:id="@+id/personLinearLayoutPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider6">
+
+            <TextView
+                android:id="@+id/roomDetailNameText"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/name"
+                android:textAlignment="textEnd"
+                android:textColor="@color/textBlue"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/roomDetailName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="8dp"
+                android:textColor="@color/textBlack"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider8"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/personLinearLayoutPhone" />
+
+        <LinearLayout
+            android:id="@+id/personLinearLayoutEmail"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="0"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider8">
+
+            <TextView
+                android:id="@+id/roomDetailUseLable"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/purpose"
+                android:textAlignment="textEnd"
+                android:textColor="@color/textBlue"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/roomDetailUse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="8dp"
+                android:textColor="@color/textBlack"
+                android:textSize="17sp" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider10"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/personLinearLayoutEmail" />
+
+        <LinearLayout
+            android:id="@+id/personLinearLayoutWebsite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="0"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider10">
+
+            <TextView
+                android:id="@+id/roomDetailPlaceLable"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/place"
+                android:textAlignment="textEnd"
+                android:textColor="@color/textBlue"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/roomDetailPlace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="8dp"
+                android:textColor="@color/textBlack"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider9"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/personLinearLayoutWebsite" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
