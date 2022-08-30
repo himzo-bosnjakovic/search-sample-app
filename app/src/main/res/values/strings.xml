@@ -45,6 +45,7 @@
     <string name="RoomSearchHint">Search Room</string>
     <string name="CourseSearchHint">Search Course</string>
     <string name="OrganisationSearchHint">Search Organisation</string>
+    <string name="app_widget_description">TUGSearch Widget</string>
 
 
 </resources>

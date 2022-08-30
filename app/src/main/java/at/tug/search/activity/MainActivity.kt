@@ -1,5 +1,7 @@
 package at.tug.search.activity
 
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -30,6 +32,7 @@ import at.tug.search.controllers.person.PersonAdapter
 import at.tug.search.controllers.room.RoomAdapter
 import at.tug.search.utils.APIManager
 import at.tug.search.utils.ObjectCache
+import at.tug.search.widget.WidgetProvider
 import com.google.android.material.navigation.NavigationView
 
 
@@ -121,6 +124,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        performWidgetNavigation()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        val intent = Intent(this, WidgetProvider::class.java)
+        intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+        val ids = AppWidgetManager.getInstance(application).getAppWidgetIds(ComponentName(application, WidgetProvider::class.java))
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
+        sendBroadcast(intent)
+        finish()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
         return true
@@ -129,6 +147,53 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val x = 10
+    }
+
+    private fun performWidgetNavigation() {
+        when (intent.action ?: "") {
+            "SearchPerson" -> {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.action_nav_home_to_nav_person)
+                return
+            }
+            "SearchRoom" -> {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.action_nav_home_to_nav_room)
+                return
+            }
+            "SearchCourse" -> {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.action_nav_home_to_nav_lv)
+                return
+            }
+            "SearchOrganization" -> {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.action_nav_home_to_nav_organisation)
+                return
+            }
+            "EventWebView" -> {
+                val url = intent.data.toString()
+                navigateToWebView(url, "Events")
+                return
+            }
+            else -> {}
+        }
+
+        val clickedNewsUrl = ObjectCache.clickedNewsUrl
+        if (clickedNewsUrl.isNotEmpty()) {
+           navigateToWebView(clickedNewsUrl, "News")
+        }
+    }
+
+    private fun navigateToWebView(url: String, title: String) {
+        if (url.isEmpty()) return
+        ObjectCache.clickedNewsUrl = ""
+        val args = Bundle()
+        args.putString("url", url)
+        args.putString("title", title)
+        ObjectCache.inAnimation = true
+        findNavController(R.id.nav_host_fragment).navigate(R.id.open_events_web_view, args)
     }
 
     fun setOnQueryTextListenerSearchViewInToolBarPerson(listView: ListView, progressBar: ProgressBar, queryErrorText: TextView) {
@@ -401,7 +466,9 @@ class MainActivity : AppCompatActivity() {
         searchView?.requestFocus()
     }
 
-    fun setActionBarTitle(title: String?) = supportActionBar!!.title = title
+    fun setActionBarTitle(title: String?) {
+        supportActionBar!!.title = title
+    }
 
     fun resetCache() {
         ObjectCache.keyboardOpen = false

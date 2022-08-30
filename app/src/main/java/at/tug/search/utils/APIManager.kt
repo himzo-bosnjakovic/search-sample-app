@@ -67,10 +67,10 @@ class APIManager {
 
         val stringRequest = StringRequest(
             Request.Method.GET, eventURL,
-            Response.Listener<String> { response ->
+            { response ->
                 XMLParser.instance.eventModelsFromData(String(response.toByteArray(charset("ISO-8859-1")), charset("UTF-8")), lamda)
             },
-            Response.ErrorListener {
+            {
             })
 
         queue.add(stringRequest)
@@ -83,10 +83,10 @@ class APIManager {
 
         val stringRequest = StringRequest(
             Request.Method.GET, newsURL,
-            Response.Listener<String> { response ->
+            { response ->
                 XMLParser.instance.newsModelsFromData(String(response.toByteArray(charset("ISO-8859-1")), charset("UTF-8")), lamda)
             },
-            Response.ErrorListener {
+            {
             })
 
         queue.add(stringRequest)

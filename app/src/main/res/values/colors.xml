@@ -8,4 +8,6 @@
     <color name="textGrey">#8f8f8f</color>
     <color name="textBlack">#FF2B2B2B</color>
     <color name="textBlue">#245B77</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

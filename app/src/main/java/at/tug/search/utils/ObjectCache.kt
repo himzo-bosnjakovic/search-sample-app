@@ -10,6 +10,7 @@ object ObjectCache {
     var actualFragment : String = ""
     var eventList : ArrayList<Event>? = null
     var newsList : ArrayList<News>? = null
+    var clickedNewsUrl : String = ""
     var internetConnected : Boolean = false
     var inAnimation : Boolean = false
     var FragmentErrorIndicator: ()->Unit = {}
