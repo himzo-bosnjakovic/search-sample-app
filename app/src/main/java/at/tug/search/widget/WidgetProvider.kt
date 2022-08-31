@@ -7,6 +7,7 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -40,6 +41,8 @@ class WidgetProvider : AppWidgetProvider() {
         appWidgetId: Int
     ) {
         val remoteViews = RemoteViews(context.packageName, R.layout.tug_widget_layout)
+
+        handleThemeUI(context, remoteViews)
 
         APIManager.instance.startDownloadNews(context) {
             ObjectCache.newsList?.clear()
@@ -160,6 +163,16 @@ class WidgetProvider : AppWidgetProvider() {
             context.startActivity(mainActivityIntent)
         }
         super.onReceive(context, intent)
+    }
+
+    private fun handleThemeUI(context: Context, views: RemoteViews) {
+        if ((context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES) {
+            views.setInt(R.id.container, "setBackgroundResource", R.drawable.dark_background_rounded)
+            views.setInt(R.id.logo_image, "setImageResource", R.drawable.tug_logo_light)
+        } else {
+            views.setInt(R.id.container, "setBackgroundResource", R.drawable.light_background_rounded)
+            views.setInt(R.id.logo_image, "setImageResource", R.drawable.tug_logo)
+        }
     }
 
     companion object {
