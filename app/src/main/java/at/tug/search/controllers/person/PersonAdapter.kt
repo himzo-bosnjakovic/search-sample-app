@@ -10,6 +10,7 @@ import android.widget.TextView
 import at.tug.search.R
 import at.tug.search.models.Person
 import at.tug.search.utils.APIManager
+import at.tug.search.utils.ObjectCache
 
 class PersonAdapter (var con: Context, var resources: Int, var items : List<Person>): ArrayAdapter<Person>(con, resources, items) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -23,6 +24,11 @@ class PersonAdapter (var con: Context, var resources: Int, var items : List<Pers
         val personImage : ImageView = view.findViewById(R.id.personImage)
 
         val item : Person = items[position]
+        if (position == 0) {
+            ObjectCache.searchedPersons.clear()
+        }
+
+        ObjectCache.searchedPersons.add(item)
 
         personTitle.text = item.title
         personInstitute.text = item.contactName

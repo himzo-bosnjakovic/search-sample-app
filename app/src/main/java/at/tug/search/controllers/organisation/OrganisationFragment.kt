@@ -15,6 +15,7 @@ import at.tug.search.R
 import at.tug.search.models.Organisation
 import at.tug.search.utils.APIManager
 import at.tug.search.utils.ObjectCache
+import at.tug.search.utils.SearchCategory
 
 class OrganisationFragment : Fragment(){
 
@@ -112,6 +113,8 @@ class OrganisationFragment : Fragment(){
                 }
             }
             else if(query.count() > 2) {
+                ObjectCache.lastSearchedCategory = SearchCategory.ORGANISATION
+                ObjectCache.searchedOrganisations.clear()
                 handler.removeCallbacksAndMessages(null)
                 if(organisationProgressBar?.visibility == View.INVISIBLE) {
                     organisationProgressBar?.visibility = View.VISIBLE

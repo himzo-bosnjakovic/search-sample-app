@@ -17,6 +17,7 @@ import at.tug.search.models.Person
 import at.tug.search.utils.ObjectCache
 import at.tug.search.R
 import at.tug.search.utils.APIManager
+import at.tug.search.utils.SearchCategory
 import java.lang.Exception
 
 
@@ -131,6 +132,8 @@ class PersonFragment : Fragment(){
                 }
             }
             else if (query.count() > 2) {
+                ObjectCache.lastSearchedCategory = SearchCategory.PERSON
+                ObjectCache.searchedPersons.clear()
                 handler.removeCallbacksAndMessages(null)
                 if (personProgressBar?.visibility == View.INVISIBLE) {
                     personProgressBar?.visibility = View.VISIBLE

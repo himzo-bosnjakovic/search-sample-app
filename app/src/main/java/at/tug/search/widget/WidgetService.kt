@@ -7,6 +7,7 @@ import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import at.tug.search.R
 import at.tug.search.utils.ObjectCache
+import at.tug.search.utils.SearchCategory
 import at.tug.search.widget.WidgetProvider.Companion.ACTION_CLICK
 import at.tug.search.widget.items.WidgetNewsItem
 
@@ -32,6 +33,37 @@ class WidgetService : RemoteViewsService() {
         }
 
         override fun onDataSetChanged() {
+            when (ObjectCache.lastSearchedCategory) {
+                SearchCategory.PERSON -> handlePersonSearch()
+                SearchCategory.ROOM -> handleRoomSearch()
+                SearchCategory.ORGANISATION -> handleOrganisationSearch()
+                SearchCategory.COURSE -> handleCourseSearch()
+                SearchCategory.NONE -> handleNewsSearch()
+            }
+        }
+
+        private fun handleRoomSearch() {
+            // TODO - Himzo
+        }
+
+        private fun handleOrganisationSearch() {
+            // TODO - Himzo
+        }
+
+        private fun handleCourseSearch() {
+            // TODO - Himzo
+        }
+
+        private fun handlePersonSearch() {
+            val searchedPersons = ObjectCache.searchedPersons.map {
+                WidgetNewsItem(it.personName ?: "", it.email_person ?: "", "")
+            }
+
+            newsItems.clear()
+            newsItems.addAll(searchedPersons)
+        }
+
+        private fun handleNewsSearch() {
             newsItems.clear()
             val news = ObjectCache.newsList?.toList() ?: arrayListOf()
             news.take(15).forEach {

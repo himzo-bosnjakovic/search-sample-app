@@ -15,6 +15,7 @@ import at.tug.search.R
 import at.tug.search.models.Course
 import at.tug.search.utils.APIManager
 import at.tug.search.utils.ObjectCache
+import at.tug.search.utils.SearchCategory
 
 class CourseFragment : Fragment(){
 
@@ -113,6 +114,8 @@ class CourseFragment : Fragment(){
                 }
             }
             else if(query.count() > 2) {
+                ObjectCache.lastSearchedCategory = SearchCategory.COURSE
+                ObjectCache.searchedCourses.clear()
                 handler.removeCallbacksAndMessages(null)
                 if(courseProgressBar?.visibility == View.INVISIBLE) {
                     courseProgressBar?.visibility = View.VISIBLE

@@ -15,6 +15,7 @@ import at.tug.search.R
 import at.tug.search.models.Room
 import at.tug.search.utils.APIManager
 import at.tug.search.utils.ObjectCache
+import at.tug.search.utils.SearchCategory
 
 class RoomFragment : Fragment(){
 
@@ -117,6 +118,8 @@ class RoomFragment : Fragment(){
                 }
             }
             else if (query.count() > 1) {
+                ObjectCache.lastSearchedCategory = SearchCategory.ROOM
+                ObjectCache.searchedRooms.clear()
                 handler.removeCallbacksAndMessages(null)
                 if (roomProgressBar?.visibility == View.INVISIBLE) {
                     roomProgressBar?.visibility = View.VISIBLE

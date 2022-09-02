@@ -1,7 +1,6 @@
 package at.tug.search.widget
 
 import android.annotation.SuppressLint
-import android.app.PendingIntent
 import android.app.PendingIntent.*
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
@@ -12,7 +11,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.RemoteViews
-import android.widget.Toast
 import at.tug.search.R
 import at.tug.search.activity.MainActivity
 import at.tug.search.utils.APIManager
@@ -20,6 +18,8 @@ import at.tug.search.utils.ObjectCache
 
 class WidgetProvider : AppWidgetProvider() {
     private var widgetOptions = Bundle()
+    private var widgetId = 0
+    private var widgetManager: AppWidgetManager? = null
 
     override fun onUpdate(
         context: Context?,
@@ -41,6 +41,8 @@ class WidgetProvider : AppWidgetProvider() {
         appWidgetId: Int
     ) {
         val remoteViews = RemoteViews(context.packageName, R.layout.tug_widget_layout)
+        widgetManager = appWidgetManager
+        widgetId = appWidgetId
 
         handleThemeUI(context, remoteViews)
 
@@ -48,20 +50,7 @@ class WidgetProvider : AppWidgetProvider() {
             ObjectCache.newsList?.clear()
             ObjectCache.newsList = it
 
-            // News list handling
-            val serviceIntent = Intent(context, WidgetService::class.java)
-            serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
-            serviceIntent.data = Uri.parse(serviceIntent.toUri(Intent.URI_INTENT_SCHEME))
-
-            val newsClickIntent = Intent(context, WidgetProvider::class.java)
-            newsClickIntent.action = ACTION_CLICK
-            val newsClickPendingIntent = getBroadcast(
-                context, 0, newsClickIntent, 0
-            )
-
-            remoteViews.setRemoteAdapter(R.id.stack_view, serviceIntent)
-            remoteViews.setPendingIntentTemplate(R.id.stack_view, newsClickPendingIntent)
-            appWidgetManager.updateAppWidget(appWidgetId, remoteViews)
+            refreshWidgetData(context)
         }
 
         APIManager.instance.startDownloadEvent(context) {
@@ -162,6 +151,8 @@ class WidgetProvider : AppWidgetProvider() {
             mainActivityIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             context.startActivity(mainActivityIntent)
         }
+
+        refreshWidgetData(context)
         super.onReceive(context, intent)
     }
 
@@ -173,6 +164,25 @@ class WidgetProvider : AppWidgetProvider() {
             views.setInt(R.id.container, "setBackgroundResource", R.drawable.light_background_rounded)
             views.setInt(R.id.logo_image, "setImageResource", R.drawable.tug_logo)
         }
+    }
+
+    private fun refreshWidgetData(context: Context?) {
+        context ?: return
+        val remoteViews = RemoteViews(context.packageName, R.layout.tug_widget_layout)
+
+        val serviceIntent = Intent(context, WidgetService::class.java)
+        serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId)
+        serviceIntent.data = Uri.parse(serviceIntent.toUri(Intent.URI_INTENT_SCHEME))
+
+        val newsClickIntent = Intent(context, WidgetProvider::class.java)
+        newsClickIntent.action = ACTION_CLICK
+        val newsClickPendingIntent = getBroadcast(
+            context, 0, newsClickIntent, 0
+        )
+
+        remoteViews.setRemoteAdapter(R.id.stack_view, serviceIntent)
+        remoteViews.setPendingIntentTemplate(R.id.stack_view, newsClickPendingIntent)
+        widgetManager?.updateAppWidget(widgetId, remoteViews)
     }
 
     companion object {
