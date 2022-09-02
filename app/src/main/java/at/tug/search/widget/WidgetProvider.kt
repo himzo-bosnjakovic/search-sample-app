@@ -182,6 +182,7 @@ class WidgetProvider : AppWidgetProvider() {
 
         remoteViews.setRemoteAdapter(R.id.stack_view, serviceIntent)
         remoteViews.setPendingIntentTemplate(R.id.stack_view, newsClickPendingIntent)
+        widgetManager?.notifyAppWidgetViewDataChanged(widgetId, R.id.stack_view)
         widgetManager?.updateAppWidget(widgetId, remoteViews)
     }
 
