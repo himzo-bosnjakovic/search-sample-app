@@ -43,15 +43,30 @@ class WidgetService : RemoteViewsService() {
         }
 
         private fun handleRoomSearch() {
-            // TODO - Himzo
+            val searchedRooms = ObjectCache.searchedRooms.map {
+                WidgetNewsItem(it.additionalInformation ?: "", it.address ?: "", "")
+            }
+
+            newsItems.clear()
+            newsItems.addAll(searchedRooms)
         }
 
         private fun handleOrganisationSearch() {
-            // TODO - Himzo
+            val searchedOrganisations = ObjectCache.searchedOrganisations.map {
+                WidgetNewsItem(it.name ?: "", it.email ?: "", "")
+            }
+
+            newsItems.clear()
+            newsItems.addAll(searchedOrganisations)
         }
 
         private fun handleCourseSearch() {
-            // TODO - Himzo
+            val searchedCourses = ObjectCache.searchedCourses.map {
+                WidgetNewsItem(it.courseName ?: "", it.courseCAMPUSonlineURL ?: "", "")
+            }
+
+            newsItems.clear()
+            newsItems.addAll(searchedCourses)
         }
 
         private fun handlePersonSearch() {
@@ -88,6 +103,14 @@ class WidgetService : RemoteViewsService() {
             val news = newsItems[position]
             remoteViews.setTextViewText(R.id.news_title, news.title)
             remoteViews.setTextViewText(R.id.news_publish_date, news.publishDate)
+
+            when (ObjectCache.lastSearchedCategory) {
+                SearchCategory.PERSON -> remoteViews.setTextViewText(R.id.category, "Persons")
+                SearchCategory.ROOM -> remoteViews.setTextViewText(R.id.category, "Rooms")
+                SearchCategory.ORGANISATION -> remoteViews.setTextViewText(R.id.category, "Organisations")
+                SearchCategory.COURSE -> remoteViews.setTextViewText(R.id.category, "Courses")
+                SearchCategory.NONE -> remoteViews.setTextViewText(R.id.category, "News")
+            }
 
 
             val fillInIntent = Intent().putExtra("url", news.url)

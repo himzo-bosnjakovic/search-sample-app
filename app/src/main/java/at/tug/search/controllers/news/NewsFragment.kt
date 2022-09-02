@@ -13,6 +13,7 @@ import at.tug.search.R
 import at.tug.search.models.News
 import at.tug.search.utils.APIManager
 import at.tug.search.utils.ObjectCache
+import at.tug.search.utils.SearchCategory
 
 class NewsFragment : Fragment(){
     var root: View? = null
@@ -23,7 +24,7 @@ class NewsFragment : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        ObjectCache.lastSearchedCategory = SearchCategory.NONE
         Handler().postDelayed({
             ObjectCache.inAnimation = false}, 350
         )

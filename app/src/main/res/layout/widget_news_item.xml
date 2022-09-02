@@ -11,9 +11,20 @@
     android:padding="20dp">
 
     <TextView
+        android:id="@+id/category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textStyle="italic"
+        android:textSize="11sp"
+        android:layout_marginBottom="5dp"
+        tools:text="News"/>
+
+    <TextView
         android:id="@+id/news_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/category"
         android:ellipsize="end"
         android:maxLines="3"
         android:textColor="@color/white"
@@ -25,7 +36,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/news_title"
-        android:layout_marginTop="10dp"
         android:layout_alignParentEnd="true"
         android:gravity="end"
         android:textColor="@color/white"
