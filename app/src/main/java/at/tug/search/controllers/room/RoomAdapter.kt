@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import at.tug.search.R
 import at.tug.search.models.Room
+import at.tug.search.utils.ObjectCache
 
 class RoomAdapter (var con: Context, var resources: Int, var items : List<Room>): ArrayAdapter<Room>(con, resources, items) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -19,6 +20,8 @@ class RoomAdapter (var con: Context, var resources: Int, var items : List<Room>)
         val adress : TextView = view.findViewById(R.id.adress)
 
         var item : Room = items[position]
+        ObjectCache.searchedRooms.add(item)
+
         roomName.text = item.additionalInformation + " (" + item.roomCode + ")"
         adress.text = item.address
 

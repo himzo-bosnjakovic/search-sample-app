@@ -7,6 +7,7 @@ import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import at.tug.search.R
 import at.tug.search.utils.ObjectCache
+import at.tug.search.utils.SearchCategory
 import at.tug.search.widget.WidgetProvider.Companion.ACTION_CLICK
 import at.tug.search.widget.items.WidgetNewsItem
 
@@ -29,17 +30,32 @@ class WidgetService : RemoteViewsService() {
         }
 
         override fun onCreate() {
+            // Do nothing
         }
 
         override fun onDataSetChanged() {
             newsItems.clear()
-            val news = ObjectCache.newsList?.toList() ?: arrayListOf()
-            news.take(15).forEach {
 
-                val title = (it.title ?: "").substringAfter("]").trim()
-                val publishDate = (it.pubDate ?: "").substringBefore("+").trim()
-                val url = it.link ?: ""
-                val widgetItem = WidgetNewsItem(title, publishDate, url)
+            when (ObjectCache.lastSearchedCategory) {
+                SearchCategory.PERSON -> handlePersonSearch()
+                else -> { /* DO nothing */
+                }
+            }
+
+//            val news = ObjectCache.newsList?.toList() ?: arrayListOf()
+//            news.take(15).forEach {
+//
+//                val title = (it.title ?: "").substringAfter("]").trim()
+//                val publishDate = (it.pubDate ?: "").substringBefore("+").trim()
+//                val url = it.link ?: ""
+//                val widgetItem = WidgetNewsItem(title, publishDate, url)
+//                newsItems.add(widgetItem)
+//            }
+        }
+
+        private fun handlePersonSearch() {
+            ObjectCache.searchedPersons.forEach {
+                val widgetItem = WidgetNewsItem(it.personName ?: "", it.email_person ?: "", "")
                 newsItems.add(widgetItem)
             }
         }

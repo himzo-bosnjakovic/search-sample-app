@@ -32,6 +32,7 @@ import at.tug.search.controllers.person.PersonAdapter
 import at.tug.search.controllers.room.RoomAdapter
 import at.tug.search.utils.APIManager
 import at.tug.search.utils.ObjectCache
+import at.tug.search.utils.SearchCategory
 import at.tug.search.widget.WidgetProvider
 import com.google.android.material.navigation.NavigationView
 
@@ -276,6 +277,8 @@ class MainActivity : AppCompatActivity() {
                 APIManager.instance.startDownloadPerson(this@MainActivity,
                     searchView?.query.toString(),
                     {
+                        ObjectCache.searchedPersons.clear()
+                        ObjectCache.lastSearchedCategory = SearchCategory.PERSON
                         listView.adapter = PersonAdapter(this@MainActivity,
                             R.layout.row_person, it)
                         ObjectCache.keyboardOpen = keyboardOpen
@@ -316,6 +319,8 @@ class MainActivity : AppCompatActivity() {
                 APIManager.instance.startDownloadRoom(this@MainActivity,
                     searchView?.query.toString(),
                     {
+                        ObjectCache.searchedRooms.clear()
+                        ObjectCache.lastSearchedCategory = SearchCategory.ROOM
                         listView.adapter = RoomAdapter(this@MainActivity,
                             R.layout.row_room, it)
                         ObjectCache.keyboardOpen = keyboardOpen
@@ -356,6 +361,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 APIManager.instance.startDownloadCourse(this@MainActivity, searchView?.query.toString(),
                     {
+                        ObjectCache.searchedCourses.clear()
+                        ObjectCache.lastSearchedCategory = SearchCategory.COURSE
                         listView.adapter = CourseAdapter(this@MainActivity,
                             R.layout.row_course, it)
                         ObjectCache.keyboardOpen = keyboardOpen
@@ -396,6 +403,8 @@ class MainActivity : AppCompatActivity() {
 
             APIManager.instance.startDownloadOrganisation(this@MainActivity, searchView?.query.toString(),
                 {
+                    ObjectCache.searchedOrganisations.clear()
+                    ObjectCache.lastSearchedCategory = SearchCategory.ORGANISATION
                     listView.adapter = OrganisationAdapter(this@MainActivity,
                         R.layout.row_organisation, it)
                     ObjectCache.keyboardOpen = keyboardOpen

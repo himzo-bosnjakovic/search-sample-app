@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import at.tug.search.R
 import at.tug.search.models.Organisation
+import at.tug.search.utils.ObjectCache
 
 class OrganisationAdapter (var con: Context, var resources: Int, var items : List<Organisation>): ArrayAdapter<Organisation>(con, resources, items) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -19,6 +20,8 @@ class OrganisationAdapter (var con: Context, var resources: Int, var items : Lis
         val organisationAdress : TextView = view.findViewById(R.id.organisationAdress)
 
         var item : Organisation = items[position]
+        ObjectCache.searchedOrganisations.add(item)
+
         organisationTitel.text = item.name
 
         if(!item.street.isNullOrEmpty())

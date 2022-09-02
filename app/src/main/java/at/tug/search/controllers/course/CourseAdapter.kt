@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import at.tug.search.R
 import at.tug.search.models.Course
+import at.tug.search.utils.ObjectCache
 
 class CourseAdapter (var con: Context, var resources: Int, var items : List<Course>): ArrayAdapter<Course>(con, resources, items) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -20,6 +21,8 @@ class CourseAdapter (var con: Context, var resources: Int, var items : List<Cour
         val courseInstitute : TextView = view.findViewById(R.id.courseInstitute)
 
         var item : Course = items[position]
+        ObjectCache.searchedCourses.add(item)
+
         courseName.text = item.courseName
         courseHours.text = item.hoursPerWeek + ", " + item.teachingTerm
         courseInstitute.text = item.name
